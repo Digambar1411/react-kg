@@ -2,7 +2,7 @@
 
 ## Run Locally
 
-Clone the project
+Clone the repository
 
 ```bash
   git clone https://github.com/Digambar1411/react-redux-learning.git
