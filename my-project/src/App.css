@@ -1,0 +1,30 @@
+.container{
+  min-width: 350px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1rem
+}
+
+.items-container{
+  width: 100%;
+}
+
+.my-btn{
+  float: right;
+}
+
+.input{
+  margin: 10px 0;
+  font-size: 16px;
+  padding: 4px;
+}
+
+.my-row{
+  display: flex;
+  align-items: center;
+}
+
+.add-btn{
+  margin: 0 20px;
+  text-align: center;
+}
