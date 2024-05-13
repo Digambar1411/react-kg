@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from "react";
-import { v1 as uuid } from 'uuid' 
+import { createContext, useContext, useReducer, d } from "react";
+import { v1 as uuid } from 'uuid'
 
 const itemsContext = createContext({
   todos: [],
@@ -9,25 +9,41 @@ const itemsContext = createContext({
 
 const useItem = () => useContext(itemsContext);
 
-const ItemContextProvider =({children}) =>{
-  const [todos, setTodos] = useState([]);
-  
-  const addTodo = (val, date) => {
-    if(val !== undefined && date !== undefined){
-      setTodos((currentValue)=>[
-        ...currentValue,
-        {name: val, date: date, id:uuid()}
-      ]);
+const ItemContextProvider = ({ children }) => {
+  // const [todos, setTodos] = useState([]);
+
+  const todosItemReducerFunc = (state, action) => {
+
+    if (action.type === 'ADD_TODO') {
+      return [...state,
+      {
+        name: action.payload.name,
+        date: action.payload.date,
+        id: action.payload.id
+      }]
+    }
+    else if (action.type === 'DELETE_TODO') {
+      return state.filter(item=>item.id !== action.payload.id);
     }
   }
-  
+
+  const [todos, todosDispatch] = useReducer(todosItemReducerFunc, []);
+
+  const addTodo = (val, date) => {
+    const newTodoItem = {
+      type: 'ADD_TODO',
+      payload: { name: val, date: date, id: uuid() }
+    }
+    todosDispatch(newTodoItem);
+  }
+
   const deleteTodo = (item) => {
-    const newTodo = todos.filter(todo => todo.id !== item.id);
-    setTodos(newTodo);
+    const newTodos = { type: 'DELETE_TODO', payload: { id: item.id } }
+    todosDispatch(newTodos);
   }
 
 
-  return(
+  return (
     <itemsContext.Provider value={
       {
         todos,
@@ -40,4 +56,4 @@ const ItemContextProvider =({children}) =>{
   )
 }
 
-export { useItem, ItemContextProvider}
+export { useItem, ItemContextProvider }
