@@ -1,5 +1,8 @@
-.social-media{
+.app-container{
   display: flex;
+}
+.content{
+  width:100%
 }
 
 .sidebar{

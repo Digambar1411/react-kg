@@ -11,11 +11,9 @@ function App() {
   const { currentTab } = usePost();
 
   return (
-    <div className='social-media'>
-      <div>
+    <div className='app-container'>
         <Sidebar />
-      </div>
-      <div className='right-section'>
+      <div className='content'>
         <Header />
         {currentTab === 'Home' ? <AddPost /> : <PostList />}
         <Footer />
