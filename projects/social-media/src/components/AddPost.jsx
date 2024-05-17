@@ -9,26 +9,31 @@ export const AddPost = () => {
 
   const title = useRef();
   const body = useRef();
-  const likes = useRef();
+  const reactions = useRef();
+  const hashtags = useRef();
 
   return (
     <form className='add-post' onSubmit={(e) => {
       let titleVal = title.current.value;
       let bodyVal = body.current.value;
-      let likesVal = likes.current.value;
+      let reactionsVal = reactions.current.value;
+      let hashtagsVal = hashtags.current.value.split(',');
+
       e.preventDefault();
       postDispatch({
         type: 'ADD_POST',
         payload: {
           title: titleVal,
           body: bodyVal,
-          likes: likesVal,
-          id: uuid()
+          reactions: reactionsVal,
+          id: uuid(),
+          hashtags:hashtagsVal
         }
       })
       title.current.value = '';
       body.current.value = '';
-      likes.current.value = '';
+      reactions.current.value = '';
+      hashtags.current.value ='';
     }}>
       <div className="mb-3">
         <label htmlFor="title" className="form-label">Title</label>
@@ -39,9 +44,15 @@ export const AddPost = () => {
         <textarea type="text/number" className="form-control" id="description" ref={body} />
       </div>
       <div className="mb-3">
-        <label htmlFor="likes" className="form-label">Likes</label>
-        <input type="number" className="form-control" id="likes" ref={likes} />
+        <label htmlFor="reactions" className="form-label">Reactions</label>
+        <input type="number" className="form-control" id="reactions" ref={reactions} />
       </div>
+
+      <div className="mb-3">
+        <label htmlFor="hashtags" className="form-label">Hashtags</label>
+        <input type="text" className="form-control" id="hashtags" ref={hashtags} />
+      </div>
+
       <button type="submit" className="btn btn-primary">Create</button>
     </form>
   )

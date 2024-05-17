@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
 
-const PostContext = createContext();
+const PostContext = createContext({postState:[], postDispatch: ()=>{}});
 
 const usePost = () => useContext(PostContext);
 
@@ -11,12 +11,7 @@ const PostContextProvider = ({children}) =>{
   const postReducerFunc =(state, action)=>{
     if(action.type === 'ADD_POST'){
       console.log(action);
-      return [...state, {
-        title: action.payload.title,
-        body: action.payload.body,
-        likes: action.payload.likes,
-        id: action.payload.id
-      }]
+      return [...state, action.payload]
     }
 
     if(action.type === 'DELETE_POST'){
