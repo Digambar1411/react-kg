@@ -12,7 +12,7 @@ export const AddPost = () => {
   const likes = useRef();
 
   return (
-    <form onSubmit={(e) => {
+    <form className='add-post' onSubmit={(e) => {
       let titleVal = title.current.value;
       let bodyVal = body.current.value;
       let likesVal = likes.current.value;

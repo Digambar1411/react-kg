@@ -9,15 +9,14 @@ export const PostList = () => {
     < div className="post-container">
       {postState.map(post =>
         <div className="card" key={post.id}>
-          <img src="..." className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title">{post.title}</h5>
             <p className="card-text">{post.body}</p>
             <AiFillLike />
-            <span className="badge text-bg-primary">{post.likes}</span>
+            <span className="badge text-bg-primary mr-3">{post.likes}</span>
             <FaComments />
             <span className="badge text-bg-secondary">{post.likes}</span>
-            <a href="#" className="btn btn-primary" onClick={() => {
+            <a href="#" className="btn btn-primary ml-3" onClick={() => {
               postDispatch(
                 {
                   type: 'DELETE_POST',

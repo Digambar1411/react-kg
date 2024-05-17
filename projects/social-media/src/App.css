@@ -16,4 +16,10 @@
 .card{
   margin: 1rem;
 }
+.ml-3{
+  margin-left: 12px;
+}
 
+.mr-3{
+  margin-right: 12px;
+}
