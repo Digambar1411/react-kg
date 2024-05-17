@@ -7,7 +7,6 @@ const usePost = () => useContext(PostContext);
 
 const PostContextProvider = ({children}) =>{
 
-  const [currentTab, setCurrentTab] = useState('Home');
 
   const postReducerFunc =(state, action)=>{
     if(action.type === 'ADD_POST'){
@@ -32,8 +31,6 @@ const PostContextProvider = ({children}) =>{
       {
         postState,
         postDispatch,
-        currentTab,
-        setCurrentTab,
       }
     }>
       {children}

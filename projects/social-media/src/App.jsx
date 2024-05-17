@@ -1,18 +1,22 @@
+import { useState } from 'react';
 import './App.css'
 import { AddPost } from './components/AddPost';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { PostList } from './components/PostList';
 import { Sidebar } from './components/Sidebar';
-import { usePost } from './store/post-context'
 
 function App() {
 
-  const { currentTab } = usePost();
+  const [currentTab, setCurrentTab] = useState('Home');
+
 
   return (
     <div className='app-container'>
-        <Sidebar />
+        <Sidebar 
+          currentTab={currentTab} 
+          setCurrentTab={setCurrentTab}
+        />
       <div className='content'>
         <Header />
         {currentTab === 'Home' ? <AddPost /> : <PostList />}
