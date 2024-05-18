@@ -10,14 +10,14 @@ export const AddPost = () => {
   const title = useRef();
   const body = useRef();
   const reactions = useRef();
-  const hashtags = useRef();
+  const tags = useRef();
 
   return (
     <form className='add-post' onSubmit={(e) => {
       let titleVal = title.current.value;
       let bodyVal = body.current.value;
       let reactionsVal = reactions.current.value;
-      let hashtagsVal = hashtags.current.value.split(',');
+      let tagsVal = tags.current.value.split(',');
 
       e.preventDefault();
       postDispatch({
@@ -27,13 +27,13 @@ export const AddPost = () => {
           body: bodyVal,
           reactions: reactionsVal,
           id: uuid(),
-          hashtags:hashtagsVal
+          tags:tagsVal
         }
       })
       title.current.value = '';
       body.current.value = '';
       reactions.current.value = '';
-      hashtags.current.value ='';
+      tags.current.value ='';
     }}>
       <div className="mb-3">
         <label htmlFor="title" className="form-label">Title</label>
@@ -49,8 +49,8 @@ export const AddPost = () => {
       </div>
 
       <div className="mb-3">
-        <label htmlFor="hashtags" className="form-label">Hashtags</label>
-        <input type="text" className="form-control" id="hashtags" ref={hashtags} />
+        <label htmlFor="tags" className="form-label">Tags</label>
+        <input type="text" className="form-control" id="tags" ref={tags} />
       </div>
 
       <button type="submit" className="btn btn-primary">Create</button>

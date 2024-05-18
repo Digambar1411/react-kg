@@ -10,11 +10,14 @@ const PostContextProvider = ({children}) =>{
 
   const postReducerFunc =(state, action)=>{
     if(action.type === 'ADD_POST'){
-      console.log(action);
       return [...state, action.payload]
     }
 
-    if(action.type === 'DELETE_POST'){
+    if(action.type === 'FETCH_POSTS'){
+      return action.payload
+    }
+
+    else if(action.type === 'DELETE_POST'){
       return state.filter(post => post.id !== action.payload.id);
     }
   }
