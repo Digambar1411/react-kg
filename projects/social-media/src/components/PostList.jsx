@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { usePost } from "../store/post-context"
 import { MdDelete } from "react-icons/md";
 
 export const PostList = () => {
 
   const { postState, postDispatch } = usePost();
+  const [loading, setLoading]= useState();
 
   const fetchPost = () => {
     fetch('https://dummyjson.com/posts')
@@ -16,11 +18,12 @@ export const PostList = () => {
     ));
   }
 
+  useEffect(()=>{fetchPost()},[]);
 
+ 
   return (
 
     < div className="post-container">
-      {postState.length === 0 && <center><button className="btn btn-primary mt-3" onClick={() => fetchPost()}>Fetch Post</button></center>}
       {postState.length > 0 && <div className="ml-3">TotalPosts are {postState.length}</div>}
       {postState.map(post =>
         <div className="card" key={post.id}>
