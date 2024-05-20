@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { usePost } from "../store/post-context"
 import { MdDelete } from "react-icons/md";
+import Loader from "./Loader";
 
 export const PostList = () => {
 
   const { postState, postDispatch } = usePost();
-  const [loading, setLoading]= useState();
+  const [loading, setLoading] = useState(false);
 
-  const fetchPost = () => {
+
+  useEffect(() => {
+    setLoading(true);
     fetch('https://dummyjson.com/posts')
     .then(res => res.json())
     .then(res => postDispatch(
@@ -15,17 +18,18 @@ export const PostList = () => {
         type: 'FETCH_POSTS',
         payload: res.posts
       }
-    ));
-  }
+    ))
+    setTimeout(()=>setLoading(false),1000);
 
-  useEffect(()=>{fetchPost()},[]);
+    return ()=>{console.log("cleaning up post list")}
+  },[]);
+  
 
- 
   return (
-
     < div className="post-container">
-      {postState.length > 0 && <div className="ml-3">TotalPosts are {postState.length}</div>}
-      {postState.map(post =>
+      {loading && <center><Loader/></center>}
+      {!loading && postState.length > 0 && <div className="ml-3">TotalPosts are {postState.length}</div>}
+      {!loading && postState.map(post =>
         <div className="card" key={post.id}>
           <div className="card-body">
             <h5 className="card-title">{post.title}</h5>
