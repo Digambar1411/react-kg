@@ -27,7 +27,7 @@ export const PostList = () => {
 
   return (
     < div className="post-container">
-      {loading && <center><Loader/></center>}
+      {loading && <Loader/>}
       {!loading && postState.length > 0 && <div className="ml-3">TotalPosts are {postState.length}</div>}
       {!loading && postState.map(post =>
         <div className="card" key={post.id}>
