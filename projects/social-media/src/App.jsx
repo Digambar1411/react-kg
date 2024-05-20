@@ -19,7 +19,7 @@ function App() {
         />
       <div className='content'>
         <Header />
-        {currentTab === 'Home' ? <AddPost /> : <PostList />}
+        {currentTab === 'Home' ? <PostList /> : <AddPost />}
         <Footer />
       </div>
     </div>

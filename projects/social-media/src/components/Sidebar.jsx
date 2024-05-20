@@ -19,7 +19,7 @@ export const Sidebar = ({ currentTab, setCurrentTab }) => {
         <li onClick={() => setCurrentTab('Posts')}>
           <a href="#" className={`nav-link ${currentTab === 'Posts' && 'active'}`}>
             <svg className="bi pe-none me-2" width="16" height="16"><use xlinkHref="#speedometer2"></use></svg>
-            Posts
+            Create Post
           </a>
         </li>
 
