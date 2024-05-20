@@ -5,9 +5,9 @@ import { PostContextProvider } from './store/post-context.jsx'
 import "bootstrap/dist/css/bootstrap.min.css"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <PostContextProvider>
       <App />
     </PostContextProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
