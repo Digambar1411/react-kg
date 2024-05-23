@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'preact/hooks'
+import { useCallback, useState, useMemo } from 'preact/hooks'
 import preactLogo from './assets/preact.svg'
 import viteLogo from '/vite.svg'
 import './app.css'
@@ -16,13 +16,19 @@ export function App() {
   // const getAdjective = () =>{
   //   return 'good'+ count;
   // }
- 
 
+  const isEven = useMemo(() => {
+    let i=0;
+    while(i<1000000000) i++;
+    return count % 2 === 0
+  },[count]);
+ 
   return (
     <>
       <div>
         <Navabar adjectice ={'good'} getAdjective={getAdjective}/>
-        <a href="https://vitejs.dev" target="_blank">
+        <span>Count1 is even or odd : {isEven ? 'Even' : 'Odd'}</span>
+        <a href="https://vitejs.dev" target="_blank"> 
           <img src={viteLogo} class="logo" alt="Vite logo" />
         </a>
         <a href="https://preactjs.com" target="_blank">
@@ -32,7 +38,7 @@ export function App() {
       <h1>Vite + Preact</h1>
       <div class="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+          count1 is {count}
         </button>
         <button onClick={() => setCount2((count2) => count2 + 1)}>
           count2 is {count2}
