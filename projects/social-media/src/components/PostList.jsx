@@ -47,7 +47,7 @@ export const PostList = () => {
               <MdDelete />
             </button>
             <div class="alert alert-info mt-3" role="alert">
-              This post has reached by {post.reactions} people.
+              This post has reached by {post.reactions.likes} people.
             </div>
           </div>
         </div>
